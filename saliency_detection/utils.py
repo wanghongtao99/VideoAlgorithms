@@ -33,15 +33,17 @@ class OpencvIo:
 
     # 显示图像，调用opencv的imshow, 最后加了销毁所有Window
     def imshow(self, src, name='a image'):
-        cv.imshow(name, src)
-        cv.waitKey(0)
-        cv.destroyAllWindows()
+        #cv.imshow(name, src)
+        cv.imwrite(name, src)
+        #cv.waitKey(0)
+        #cv.destroyAllWindows()
 
     # 把一个数组（可in的数据结构）里的图像全显示，窗口名是从0开始编号。
     def imshow_array(self, images):
         name = 0
         for x in images:
             cv.imshow(str(name), np.uint8(self.__util.normalize_range(x)))
+            cv.imwrite(str(name)+".bmp", np.uint8(self.__util.normalize_range(x)))
             name = name + 1
         cv.waitKey(0)
         cv.destroyAllWindows()
